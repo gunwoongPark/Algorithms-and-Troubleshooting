@@ -40,15 +40,14 @@ def down_heap(heap, heap_size):
 
 def max_heap(heap, heap_size):
     while heap_size > 1:
-        # print(heap)
         heap[1], heap[heap_size] = heap[heap_size], heap[1]
         heap_size -= 1
         down_heap(heap, heap_size)
 
 if __name__ == '__main__':
     import random
-    nums = [random.randint(0, 100) for _ in range(10)]
-    # nums = [4,2,7,6,9,3,5]
+    # nums = [random.randint(0, 100) for _ in range(10)]
+    nums = [4,2,7,6,9,3,5]
     heap = [None]
 
     for num in nums:
