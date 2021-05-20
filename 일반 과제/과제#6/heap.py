@@ -9,27 +9,27 @@ def insert_num(num, heap):
             break
 
 def down_heap(heap, heap_size):
-    idx = 1
+    current = 1
     while True:
-        # 더 이상 자식노드가 없거나, 한 쪽만 존재할 경우
-        if 2*idx > heap_size or 2*idx+1 > heap_size:
-            break
+        current_value = heap[current]
+        left_child = 2 * current
+        right_child = 2 * current + 1
 
-        if heap[2*idx] > heap[2*idx+1]:
-            if heap[idx] < heap[2*idx]:
-                heap[idx], heap[2*idx] = heap[2*idx], heap[idx]
-                idx *= 2
-            # 본인이 더 클 경우
-            else:
-                break
-
+        # 더 이상 자식노드가 없을 경우
+        if left_child > heap_size:
+            return
+        # 왼쪽 자식 노드만 있는 케이스
+        elif right_child > heap_size:
+            child_value, selected = heap[left_child], left_child
+            if current_value >= child_value:
+                return
+        # 자식이 두 개 다 있는 케이스
         else:
-            if heap[idx] < heap[2*idx+1]:
-                heap[idx], heap[2*idx+1] = heap[2*idx+1], heap[idx]
-                idx = 2*idx+1
-            # 본인이 더 클 경우
-            else:
-                break
+            child_value, selected = max((heap[right_child], right_child), (heap[left_child], left_child))
+            if current >= child_value:
+                return
+        heap[current], heap[selected] = child_value, current_value
+        current = selected
 
 def max_heap(heap, heap_size):
     while heap_size > 1:
@@ -38,7 +38,9 @@ def max_heap(heap, heap_size):
         down_heap(heap, heap_size)
 
 if __name__ == '__main__':
-    nums = [4, 2, 7, 6, 9, 3, 5, 1, 8]
+    import random
+    nums = [random.randint(0, 100) for _ in range(10)]
+    # nums = [4,2,7,6,9,3,5]
     heap = [None]
 
     for num in nums:
