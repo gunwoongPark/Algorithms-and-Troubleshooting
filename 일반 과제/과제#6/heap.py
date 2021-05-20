@@ -11,7 +11,6 @@ def insert_num(num, heap):
 def down_heap(heap, heap_size):
     current = 1
     while True:
-        current_value = heap[current]
         left_child = 2 * current
         right_child = 2 * current + 1
 
@@ -20,19 +19,28 @@ def down_heap(heap, heap_size):
             return
         # 왼쪽 자식 노드만 있는 케이스
         elif right_child > heap_size:
-            child_value, selected = heap[left_child], left_child
-            if current_value >= child_value:
+            if heap[current] >= heap[left_child]:
                 return
+            heap[current], heap[left_child] = heap[left_child], heap[current]
+            current = left_child
+
         # 자식이 두 개 다 있는 케이스
         else:
-            child_value, selected = max((heap[right_child], right_child), (heap[left_child], left_child))
-            if current >= child_value:
-                return
-        heap[current], heap[selected] = child_value, current_value
-        current = selected
+            if heap[left_child] < heap[right_child]:
+                if heap[current] >= heap[right_child]:
+                    return
+                heap[current], heap[right_child] = heap[right_child], heap[current]
+                current = right_child
+
+            else:
+                if heap[current] >= heap[left_child]:
+                    return
+                heap[current], heap[left_child] = heap[left_child], heap[current]
+                current = left_child
 
 def max_heap(heap, heap_size):
     while heap_size > 1:
+        # print(heap)
         heap[1], heap[heap_size] = heap[heap_size], heap[1]
         heap_size -= 1
         down_heap(heap, heap_size)
