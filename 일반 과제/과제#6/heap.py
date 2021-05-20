@@ -1,3 +1,5 @@
+import random
+
 def insert_num(num, heap):
     heap.append(num)
     idx = len(heap)-1
@@ -45,9 +47,7 @@ def max_heap(heap, heap_size):
         down_heap(heap, heap_size)
 
 if __name__ == '__main__':
-    import random
-    # nums = [random.randint(0, 100) for _ in range(10)]
-    nums = [4,2,7,6,9,3,5]
+    nums = [random.randint(0, 100) for _ in range(10)]
     heap = [None]
 
     for num in nums:

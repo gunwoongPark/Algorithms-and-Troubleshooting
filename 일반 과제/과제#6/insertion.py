@@ -1,3 +1,5 @@
+import random
+
 def InsertionSort(A):
     n = len(A)
     for idx in range(1, n):
@@ -12,5 +14,5 @@ def InsertionSort(A):
     return A
 
 if __name__ == '__main__':
-    A = [5, 8, 1, 2, 0, 6, 9, 3, 7, 4]
+    A = [random.randint(0, 100) for _ in range(10)]
     print(InsertionSort(A))
