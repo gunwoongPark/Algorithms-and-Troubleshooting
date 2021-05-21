@@ -16,6 +16,7 @@ def SelectionSort(A):
     return A
 
 if __name__ == '__main__':
+    random.seed(0)
     A = [random.randint(0, 100001) for _ in range(2000)]
     print(SelectionSort(A))
 

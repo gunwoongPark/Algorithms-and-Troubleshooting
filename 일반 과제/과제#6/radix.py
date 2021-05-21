@@ -25,6 +25,7 @@ def radix_sort(l):
     return(l)
 
 if __name__ == '__main__':
+    random.seed(0)
     A = [random.randint(0, 100001) for _ in range(2000)]
     A = radix_sort(A)
     print(A)
