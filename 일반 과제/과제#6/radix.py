@@ -1,4 +1,5 @@
 import random
+
 def getrdx(l, modulus):
     maxi = 0
     for val in l:
@@ -24,4 +25,9 @@ def radix_sort(l):
     return(l)
 
 if __name__ == '__main__':
-    print(radix_sort([9, 89, 70, 35, 131, 910, 1]))
+    A = [random.randint(0, 100001) for _ in range(2000)]
+    A = radix_sort(A)
+    print(A)
+
+    is_sorted = all(A[i] <= A[i+1] for i in range(len(A)-1))
+    print('CHECK :', is_sorted)

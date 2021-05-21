@@ -47,7 +47,7 @@ def max_heap(heap, heap_size):
         down_heap(heap, heap_size)
 
 if __name__ == '__main__':
-    nums = [random.randint(0, 100) for _ in range(10)]
+    nums = [random.randint(0, 100001) for _ in range(2000)]
     heap = [None]
 
     for num in nums:
@@ -57,4 +57,7 @@ if __name__ == '__main__':
     max_heap(heap, heap_size)
 
     print(heap)
+
+    is_sorted = all(heap[i] <= heap[i+1] for i in range(1, len(heap)-1))
+    print('CHECK :', is_sorted)
 
